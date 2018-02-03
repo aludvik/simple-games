@@ -4,4 +4,4 @@ version = "0.1.0"
 authors = ["Adam M Ludvik <adam.m.ludvik@gmail.com>"]
 
 [dependencies]
-rpg-engine = { path = "../rpg-engine" }
+rpg-engine = { path = "../engine" }
