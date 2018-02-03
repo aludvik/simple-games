@@ -5,3 +5,4 @@ authors = ["Adam M Ludvik <adam.m.ludvik@gmail.com>"]
 
 [dependencies]
 rand = "0.4"
+ncurses = "5.91.0"
