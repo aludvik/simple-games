@@ -9,6 +9,7 @@ use std::{thread, time};
 use rpg_engine::generate::name::NameGenerator;
 use rpg_engine::io::screen::Screen;
 use rpg_engine::io::window::Window;
+use rpg_engine::io::keys::*;
 use rpg_engine::world::scene::Scene;
 
 use syllable_sets::simple_fantasy;
@@ -54,12 +55,12 @@ impl Scene for SimpleScene {
     fn update(&mut self) {
     }
 
-    fn on_pressed(&mut self, key: char) {
+    fn on_pressed(&mut self, key: Key) {
         let dp: (i32, i32) = match key {
-            'a' => (-1, 0),
-            'w' => (0, -1),
-            'd' => (1, 0),
-            's' => (0, 1),
+            LOWER_A | LEFT => (-1, 0),
+            LOWER_W | UP => (0, -1),
+            LOWER_D | RIGHT => (1, 0),
+            LOWER_S | DOWN => (0, 1),
             _ => (0, 0),
         };
         self.position = wrap2(
@@ -81,8 +82,8 @@ fn simple_scene() {
     let mut win = screen.window(0, 0, w as u32, h as u32);
     loop {
         match screen.poll() {
-            Some(ch) => {
-                scene.on_pressed(ch);
+            Some(key) => {
+                scene.on_pressed(key as i32);
             },
             None => {
                 thread::sleep(time::Duration::from_millis(10));
@@ -95,17 +96,17 @@ fn simple_scene() {
 }
 
 fn collect_char_nums() {
-    let mut keys: Vec<u32> = Vec::new();
+    let mut keys: Vec<i32> = Vec::new();
     {
         let screen = Screen::new();
         loop {
             match screen.poll() {
-                Some(ch) => match ch {
-                    'q' => {
+                Some(key) => match key {
+                    LOWER_Q => {
                         break;
                     },
                     _ => {
-                        keys.push(ch as u32);
+                        keys.push(key as i32);
                     }
                 },
                 None => {
@@ -125,7 +126,7 @@ fn poll_win() {
     loop {
         match screen.poll() {
             Some(ch) => {
-                win.putc(ch);
+                win.putc(((ch as u32) as u8) as char);
             },
             None => {
                 win.putc('.');
