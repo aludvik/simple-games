@@ -14,10 +14,6 @@ impl Screen {
         Screen{}
     }
 
-    pub fn clear(&self) {
-        ncurses::clear();
-    }
-
     pub fn poll(&self) -> Option<u32> {
         match ncurses::getch() {
             i if i < 0 => None,
