@@ -14,10 +14,10 @@ impl Screen {
         Screen{}
     }
 
-    pub fn poll(&self) -> Option<u32> {
+    pub fn poll(&self) -> Option<char> {
         match ncurses::getch() {
-            i if i < 0 => None,
-            i => Some(i as u32),
+            c if c < 0 => None,
+            c => Some(((c as u32) as u8) as char),
         }
     }
 

@@ -9,8 +9,8 @@ impl Window {
         Window{ window }
     }
 
-    pub fn putc(&self, ch: u32) {
-        ncurses::waddch(self.window, ch);
+    pub fn putc(&self, ch: char) {
+        ncurses::waddch(self.window, ch as u32);
     }
 
     pub fn refresh(&self) {
