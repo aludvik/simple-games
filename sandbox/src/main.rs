@@ -24,24 +24,6 @@ struct SimpleScene {
     max: (i32, i32),
 }
 
-impl SimpleScene {
-    fn on_input(&mut self, c: char) {
-        let dp: (i32, i32) = match c {
-            'a' => (-1, 0),
-            'w' => (0, -1),
-            'd' => (1, 0),
-            's' => (0, 1),
-            _ => (0, 0),
-        };
-        self.position = wrap2(
-            self.position,
-            dp,
-            (0, 0),
-            self.max,
-        );
-    }
-}
-
 fn wrap2(
     cur: (i32, i32),
     del: (i32, i32),
@@ -70,6 +52,22 @@ impl Scene for SimpleScene {
 
     fn update(&mut self) {
     }
+
+    fn on_pressed(&mut self, key: char) {
+        let dp: (i32, i32) = match key {
+            'a' => (-1, 0),
+            'w' => (0, -1),
+            'd' => (1, 0),
+            's' => (0, 1),
+            _ => (0, 0),
+        };
+        self.position = wrap2(
+            self.position,
+            dp,
+            (0, 0),
+            self.max,
+        );
+    }
 }
 
 fn simple_scene() {
@@ -83,7 +81,7 @@ fn simple_scene() {
     loop {
         match screen.poll() {
             Some(ch) => {
-                scene.on_input(ch);
+                scene.on_pressed(ch);
             },
             None => {
                 thread::sleep(time::Duration::from_millis(10));
