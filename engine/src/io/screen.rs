@@ -10,6 +10,7 @@ impl Screen {
         ncurses::cbreak();
         ncurses::nodelay(ncurses::stdscr(), true);
         ncurses::noecho();
+        ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
         Screen{}
     }
 
