@@ -16,7 +16,8 @@ use syllable_sets::simple_fantasy;
 fn main() {
     //gen_name();
     //poll_win();
-    simple_scene();
+    // simple_scene();
+    collect_char_nums();
 }
 
 struct SimpleScene {
@@ -90,6 +91,31 @@ fn simple_scene() {
         win.clear();
         scene.draw(&mut win);
         win.refresh();
+    }
+}
+
+fn collect_char_nums() {
+    let mut keys: Vec<u32> = Vec::new();
+    {
+        let screen = Screen::new();
+        loop {
+            match screen.poll() {
+                Some(ch) => match ch {
+                    'q' => {
+                        break;
+                    },
+                    _ => {
+                        keys.push(ch as u32);
+                    }
+                },
+                None => {
+                    thread::sleep(time::Duration::from_millis(10));
+                },
+            };
+        }
+    }
+    for key in keys {
+        println!("{}", key);
     }
 }
 
