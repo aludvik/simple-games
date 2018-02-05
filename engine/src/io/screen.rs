@@ -6,10 +6,15 @@ pub struct Screen {}
 
 impl Screen {
     pub fn new() -> Self {
+        // Setup ncurses
         ncurses::initscr();
+        // Catch control characters like CTRL+C
         ncurses::cbreak();
+        // Non-blocking getch()
         ncurses::nodelay(ncurses::stdscr(), true);
+        // Do not print characters to screen by default
         ncurses::noecho();
+        // Do not show the cursor
         ncurses::curs_set(ncurses::CURSOR_VISIBILITY::CURSOR_INVISIBLE);
         Screen{}
     }
