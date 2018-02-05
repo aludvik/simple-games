@@ -14,6 +14,7 @@ impl Screen {
         Screen{}
     }
 
+    // Get input
     pub fn poll(&self) -> Option<char> {
         match ncurses::getch() {
             c if c < 0 => None,
@@ -21,6 +22,7 @@ impl Screen {
         }
     }
 
+    // Create windows
     pub fn default_window(&self) -> Window {
         Window::new(ncurses::stdscr())
     }
