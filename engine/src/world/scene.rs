@@ -1,4 +1,5 @@
 use io::window::Window;
+use io::keys::Key;
 
 pub trait Scene {
     // Called periodically to update the scene
@@ -8,7 +9,7 @@ pub trait Scene {
     fn draw(&self, window: &Window) {}
 
     // Called when a key is pressed (when this scene is active)
-    fn on_pressed(&mut self, key: char) {}
+    fn on_pressed(&mut self, key: Key) {}
 
     // Called when this scene gains focus
     fn on_focus(&mut self) {}

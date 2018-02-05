@@ -1,6 +1,7 @@
 use ncurses;
 
 use io::window::Window;
+use io::keys::Key;
 
 pub struct Screen {}
 
@@ -10,6 +11,8 @@ impl Screen {
         ncurses::initscr();
         // Catch control characters like CTRL+C
         ncurses::cbreak();
+        // Allow extended keyboard characters like F1 and up arrow
+        ncurses::keypad(ncurses::stdscr(), true);
         // Non-blocking getch()
         ncurses::nodelay(ncurses::stdscr(), true);
         // Do not print characters to screen by default
@@ -20,10 +23,10 @@ impl Screen {
     }
 
     // Get input
-    pub fn poll(&self) -> Option<char> {
+    pub fn poll(&self) -> Option<Key> {
         match ncurses::getch() {
             c if c < 0 => None,
-            c => Some(((c as u32) as u8) as char),
+            c => Some(c as Key),
         }
     }
 
