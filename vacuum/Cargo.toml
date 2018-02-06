@@ -1,0 +1,7 @@
+[package]
+name = "vacuum"
+version = "0.1.0"
+authors = ["Adam M Ludvik <adam.m.ludvik@gmail.com>"]
+
+[dependencies]
+engine = { path = "../engine" }
