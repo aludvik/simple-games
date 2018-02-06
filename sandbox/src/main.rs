@@ -1,16 +1,16 @@
 #[macro_use]
-extern crate rpg_engine;
+extern crate engine;
 
 mod syllable_sets;
 
 
 use std::{thread, time};
 
-use rpg_engine::generate::name::NameGenerator;
-use rpg_engine::io::screen::Screen;
-use rpg_engine::io::window::Window;
-use rpg_engine::io::keys::*;
-use rpg_engine::world::scene::Scene;
+use engine::generate::name::NameGenerator;
+use engine::io::screen::Screen;
+use engine::io::window::Window;
+use engine::io::keys::*;
+use engine::world::scene::Scene;
 
 use syllable_sets::simple_fantasy;
 

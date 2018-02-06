@@ -1,5 +1,5 @@
 [package]
-name = "rpg-engine"
+name = "engine"
 version = "0.1.0"
 authors = ["Adam M Ludvik <adam.m.ludvik@gmail.com>"]
 
